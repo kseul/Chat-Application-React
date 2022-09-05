@@ -1,17 +1,16 @@
 const users = [];
 
 /* 유저 추가하기 */
-// return 값은 error 이거나 user 이다.
 const addUser = ({ id, name, room }) => {
   // name = name.trim().toLowerCase(); 확인필요
   // room = room.trim().toLowerCase(); 확인필요
-  const existingUser = users.find(
-    (user) => user.room === room && user.name === name
-  ); // 새 사용자가 동일한 사용자 이름으로 같은 방에 등록하려고 시도할 경우
+  // const existingUser = users.find(
+  //   (user) => user.room === room && user.name === name
+  // ); // 새 사용자가 동일한 사용자 이름으로 같은 방에 등록하려고 시도할 경우
 
-  if (existingUser) {
-    return { error: '이미 사용중인 이름입니다.' };
-  }
+  // if (existingUser) {
+  //   return { error: '이미 사용중인 이름입니다.' };
+  // }
 
   const user = { id, name, room };
   users.push(user);

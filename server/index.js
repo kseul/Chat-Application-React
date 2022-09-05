@@ -1,16 +1,12 @@
 const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
-const cors = require('cors');
+const router = require('./router');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
-// const PORT = process.env.PORT || 5000; 확인필요
-const router = require('./router');
-
 const app = express();
 const server = http.createServer(app);
-app.use(cors());
 const io = socketio(server, {
   cors: { origin: '*', credentials: true },
 });
@@ -41,7 +37,7 @@ io.on('connection', (socket) => {
 
   socket.on('메세지전송', (message, callback) => {
     const user = getUser(socket.id);
-    console.log('socket.id', socket.id);
+    console.log('socket.id: ', socket.id);
     console.log('user: ', user);
 
     io.to(user.room).emit('message', { user: user.name, text: message });
